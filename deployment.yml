@@ -1,0 +1,24 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app
+  labels:
+    app: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  # pod spec begins here
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+        - name: menuapi
+          image: registry.digitalocean.com/kub-flask/menuapi:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5000
